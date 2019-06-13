@@ -5,8 +5,28 @@ __This project is on analysing literature texts. We worked with raw texts of 147
 * Clustering of extracted plotlines
 * Extraction of main characters from raw books
 
-## Sentiment analysis for extracting plotlines (by Stanislav Vdovych @SvK)
+## Sentiment analysis for extracting plotlines (by Stanislav Vdovych @vdovych)
 
+__Data:__ 14k tweets about airlines labeled as positive, neutral or negative
+
+Tweets are usually short sentences with simple emotions thus they are best fitted for classifying sentences
+
+__Processing:__ 
+Using pretrained embeddings transform all words into 300d vectors, removing super rare words in process. 
+Zero-pad for training the model
+
+__Model:__
+For sentiment analysis I use LSTM model to analyze sentences and predict sentiment on scale from 1 to -1 (1 - pos,0 - neutral,-1 - neg)
+
+It's a powerful tool to capture relations between the words in sentence as it can learn higher-level concepts such as negations on it's own. Using non-DL approach would've required handling it manually during preprocessing and allowing room for error
+
+__Other sentiment analyzers:__
+
+ As multiple libs have their own sentiment analyzers, I compared them with mine. From 3 I chose to compare TextBlob was easiest to use but relatively the worst in accuracy, NLTK has great non-DL solution, that gives only sligtly lower accuracy, and spaCy offers very similar analyzer to the one I'm using, just heavier. If given more resourses to train, I would have probably just used spaCy
+
+__Visualisation:__ 
+
+Sentence by sentence sentiments are usually chaotic but general trends can be seen such as very positive or dark moments in the story. In some books there is shift in tone, for example "The Picture of Dorian Gray" from pretty positive-neutral tone into noticeably dark one
 
 
 ## Clustering of extracted plotlines (by Maryana Temnyk @Marytem)
