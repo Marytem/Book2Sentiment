@@ -7,31 +7,41 @@ __This project is on analysing literature texts. We worked with raw texts of 147
 
 ## Sentiment analysis for extracting plotlines (by Stanislav Vdovych @vdovych)
 
-__Data:__ 14k tweets about airlines labeled as positive, neutral or negative
+__Data:__ 14k tweets about airlines labeled as positive, neutral or negative.
 
-Tweets are usually short sentences with simple emotions thus they are best fitted for classifying sentences
+Tweets are usually short sentences with simple emotions thus they are best fitted for classifying sentences.
 
 __Processing:__ 
 Using pretrained embeddings transform all words into 300d vectors, removing super rare words in process. 
-Zero-pad for training the model
+Zero-pad for training the model.
 
 __Model:__
 For sentiment analysis I use LSTM model to analyze sentences and predict sentiment on scale from 1 to -1 (1 - pos,0 - neutral,-1 - neg)
 
-It's a powerful tool to capture relations between the words in sentence as it can learn higher-level concepts such as negations on it's own. Using non-DL approach would've required handling it manually during preprocessing and allowing room for error
+It's a powerful tool to capture relations between the words in sentence as it can learn higher-level concepts such as negations on it's own. Using non-DL approach would've required handling it manually during preprocessing and allowing room for error.
 
 __Other sentiment analyzers:__
 
- As multiple libs have their own sentiment analyzers, I compared them with mine. From 3 I chose to compare TextBlob was easiest to use but relatively the worst in accuracy, NLTK has great non-DL solution, that gives only sligtly lower accuracy, and spaCy offers very similar analyzer to the one I'm using, just heavier. If given more resourses to train, I would have probably just used spaCy
+ As multiple libs have their own sentiment analyzers, I compared them with mine. From 3 I chose to compare TextBlob was easiest to use but relatively the worst in accuracy, NLTK has great non-DL solution, that gives only sligtly lower accuracy, and spaCy offers very similar analyzer to the one I'm using, just heavier. If given more resourses to train, I would have probably just used spaCy.
 
 __Visualisation:__ 
 
-Sentence by sentence sentiments are usually chaotic but general trends can be seen such as very positive or dark moments in the story. In some books there is shift in tone, for example "The Picture of Dorian Gray" from pretty positive-neutral tone into noticeably dark one
+Sentence by sentence sentiments are usually chaotic but general trends can be seen such as very positive or dark moments in the story. In some books there is a shift in tone, for example "The Picture of Dorian Gray" from pretty positive-neutral tone into a noticeably dark one.
 
+* TREASSURE ISLAND
+![alt text](https://github.com/Marytem/Book2Sentiment/blob/master/images/treasure_island.png) 
+* Game of thrones (is dark)
+![alt text](https://github.com/Marytem/Book2Sentiment/blob/master/images/got.png) 
+* the Picture of Dorian Grey
+![alt text](https://github.com/Marytem/Book2Sentiment/blob/master/images/dorian_grey.png) 
+
+Here's how the last books plotline looks like if we smooth the sequence with rolling average. Can you see the pattern in the above heatmap? The second part of The Picture of Dorian Grey is more pink, which means more dark and pesimistic.
+
+![alt text](https://github.com/Marytem/Book2Sentiment/blob/master/images/dorian_grey_func.png) 
 
 ## Clustering of extracted plotlines (by Maryana Temnyk @Marytem)
 
-__Data:__ 147 sentiment sequences of our books-dataset. 
+__Data:__ 147 sentiment sequences of our books-dataset. These are sequences of numbers from -1 to 1 indicating how positive or negative each sentence in the book is.
 
 __processing:__ 
 * stretch all sentiment sequences to the length of the longest one.
